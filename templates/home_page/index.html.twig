@@ -8,16 +8,48 @@
         <div class="alert alert-success">
             {{ message }}
         </div>
-    {% endfor %}    {% for message in app.flashes('notice') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
+    {% endfor %}
 
-    <a href="{{ path('app_create_form') }}">GO TO /create</a>
+    <a href="{{ path('create_form') }}">GO TO /create</a>
 
-{#    <div class="bg-danger">test</div>#}
 
+
+    <!-- A Bootstrap container provides padding and centers the content -->
+    <div class="container mt-5">
+
+        <!-- This wrapper makes the table responsive. On small screens, it will scroll horizontally. -->
+        <div class="table-responsive">
+
+            <table class="table table-striped table-bordered table-hover">
+
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-start">Title</th>
+                    <th scope="col" class="text-start">Content</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for data in datas %}
+                    <tr>
+                        <td class="text-start">{{ data.title }}</td>
+                        <td class="text-start">{{ data.content }}</td>
+                        <td class="text-start">
+                            <a href="{{ path('update', {'id': data.id}) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('delete', {'id': data.id}) }}" class="btn btn-danger">Delete</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div> <!-- end of .table-responsive -->
+
+    </div> <!-- end of .container -->
 
 
 {% endblock %}
